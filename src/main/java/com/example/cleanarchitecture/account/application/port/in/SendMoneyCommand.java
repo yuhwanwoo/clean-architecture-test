@@ -3,9 +3,9 @@ package com.example.cleanarchitecture.account.application.port.in;
 import com.example.cleanarchitecture.account.domain.Account.AccountId;
 import com.example.cleanarchitecture.account.domain.Money;
 import com.example.cleanarchitecture.common.SelfValidating;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
-import org.antlr.v4.runtime.misc.NotNull;
 
 @Value
 @EqualsAndHashCode(callSuper = false)
