@@ -12,6 +12,10 @@ public class Money {
     @NonNull
     private final BigInteger amount;
 
+    public boolean isPositive() {
+        return this.amount.compareTo(BigInteger.ZERO) > 0;
+    }
+
     public static Money of(long value) {
         return new Money(BigInteger.valueOf(value));
     }
@@ -24,7 +28,7 @@ public class Money {
         return new Money(this.amount.negate());
     }
 
-    public boolean isPositive() {
-        return this.amount.compareTo(BigInteger.ZERO) > 0;
+    public static Money subtract(Money a, Money b) {
+        return new Money(a.amount.subtract(b.amount));
     }
 }
