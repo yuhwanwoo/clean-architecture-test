@@ -1,15 +1,38 @@
 package com.example.cleanarchitecture.account.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.Value;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Account {
-    private AccountId id;
-    private Money baselineBalance;
-    private ActivityWindow activityWindow;
+    @Getter
+    private final AccountId id;
+    @Getter
+    private final Money baselineBalance;
+    @Getter
+    private final ActivityWindow activityWindow;
 
-    protected Account() {
+    private static Account withoutId(
+            Money baselineBalance,
+            ActivityWindow activityWindow
+    ) {
+        return new Account(null, baselineBalance, activityWindow);
+    }
+
+    public static Account withId(
+            AccountId accountId,
+            Money baselineBalance,
+            ActivityWindow activityWindow) {
+        return new Account(accountId, baselineBalance, activityWindow);
+    }
+
+    public Optional<AccountId> getId(){
+        return Optional.ofNullable(this.id);
     }
 
     public Money calculateBalance() {
